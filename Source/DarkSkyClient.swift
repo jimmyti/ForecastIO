@@ -14,7 +14,7 @@ open class DarkSkyClient : NSObject {
     
     private let apiKey: String
     private let session = URLSession.shared
-    private static let darkSkyURL = "https://api.darksky.net/forecast/"
+    private static let darkSkyURL = "https://weathermachine.io/forecast/"
     
     /// Units in which the `Forecast` response will be provided. US is the default if no units are specified as per the Dark Sky API docs.
     open var units: Units?
@@ -111,6 +111,8 @@ open class DarkSkyClient : NSObject {
             }
             queryItems.append(URLQueryItem(name: "exclude", value: excludeFieldsString))
         }
+
+        queryItems.append(URLQueryItem(name: "source", value: "apple_weather"))
         urlBuilder.queryItems = queryItems
     
         return urlBuilder.url!
